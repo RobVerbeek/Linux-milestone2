@@ -1,0 +1,14 @@
+deployments:
+  - name: apache-deployment
+    serviceName: apache
+    container:
+      name: apa-m2-rv
+      image: robverbeek/apa-m2-rv
+      port: 80
+
+  - name: fastapi-deployment
+    serviceName: fastapi
+    container:
+      name: fastapi-m2-rv
+      image: robverbeek/fastapi-m2-rv
+      port: 8000
