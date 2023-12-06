@@ -8,8 +8,9 @@ apache:
 
 fastapi:
   name: fastapi-deployment
-    serviceName: fastapi
-    container:
-      name: fastapi-m2-rv
-      image: robverbeek/fastapi-m2-rv
-      port: 8000
+  serviceName: fastapi
+  container:
+    name: fastapi-m2-rv
+    image: robverbeek/fastapi-m2-rv
+    port: 8000
+
