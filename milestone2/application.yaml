@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: milestone2-argo
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/RobVerbeek/Linux-milestone2
+    targetRevision: HEAD #points to the head of the repository
+    path: dev
+  destination:
+    server: https://kubernetes.default.svc # internal kubernetes API service (DNS)
+    namespace: default # added for clarity
+
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+
+    automated:
+      selfHeal: true
+      prune: true
