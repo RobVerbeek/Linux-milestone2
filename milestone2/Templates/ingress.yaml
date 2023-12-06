@@ -30,3 +30,10 @@ spec:
               name: fastapi-service
               port:
                 number: 8000
+        - path: /prometheus
+          pathType: Prefix
+          backend:
+            service:
+              name: prometheus-service
+              port:
+                number: 9090
