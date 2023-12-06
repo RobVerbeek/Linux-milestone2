@@ -1,0 +1,45 @@
+#
+# Services
+#
+apiVersion: v1
+kind: Service
+metadata:
+  name: apache-service
+  namespace: default # by default the namespace is default, I added this for clarity.
+spec:
+  selector: # the selector will route incoming traffic to the pods with a corresponding label
+    app: apache 
+  ports: # Specify which ports to listen on and where to route incoming traffic.
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: fastapi-service
+  namespace: default
+spec:
+  selector:
+    app: fastapi
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  namespace: default
+spec:
+  selector:
+    app: postgresql
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432

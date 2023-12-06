@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: https://github.com/RobVerbeek/Linux-milestone2
     targetRevision: HEAD #points to the head of the repository
-    path: dev
+    path: milestone2helmchart
   destination:
     server: https://kubernetes.default.svc # internal kubernetes API service (DNS)
     namespace: default # added for clarity
