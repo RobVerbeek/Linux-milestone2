@@ -1,0 +1,15 @@
+Vagrant.configure("2") do |config| # begin configuration with version 2
+    config.vm.define "milestone2-vm-test" do |node| # name the virtual machine
+      node.vm.box = "generic/ubuntu2204" # use the generic/ubuntu2204 box for this vm
+      node.vm.hostname = "milestone2-vm-test" # set hostname of the VM
+      node.vm.network "private_network", ip: "192.168.50.10" # set the IP of the VM, this is how we access the webserver externally
+      node.vm.provider "virtualbox" do |vb| # add some resource allocation settings
+      config.vm.synced_folder ".", '/vagrant', disabled: true # stop wasting time with shared folders
+        vb.memory = "2048"
+        vb.cpus = 2
+      end
+      config.vm.provision :file, source: "./", destination: "~/milestone2" # add the provision file
+      node.vm.provision "shell", path: "provision.sh" # setup the path for the script
+    end
+  end
+  

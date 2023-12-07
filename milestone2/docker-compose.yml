@@ -1,0 +1,41 @@
+version: '3.9'
+networks:
+  milestone2: {}
+
+services:
+  apache:
+    image: apa-m2-rv
+    container_name: contapa2-m2-rv
+    restart: always
+    ports:
+      - "8080:80"
+    depends_on:
+      - postgres
+    networks:
+      - milestone2
+
+  postgres:
+    image: postgres-m2-rv
+    container_name: postgres-m2-rv
+    restart: always
+    networks:
+      - milestone2
+    volumes:
+      - ./postgres:/docker-entrypoint-initdb.d
+    environment:
+      POSTGRES_USER: rob_verbeek
+      POSTGRES_PASSWORD: milestone2
+      POSTGRES_DB: milestone2
+    ports:
+      - "5432:5432"
+
+  node:
+    image: fastapi-m2-rv
+    container_name: contapi-m2-rv
+    restart: always
+    ports:
+     - "8000:8000"
+    networks:
+      - milestone2
+    depends_on:
+    - postgres

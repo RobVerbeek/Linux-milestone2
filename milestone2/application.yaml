@@ -1,0 +1,24 @@
+#kubectl port-forward -n argocd svc/argocd-server 8080:443 saved for convenience
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: milestone2-argo
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/RobVerbeek/Linux-milestone2
+    targetRevision: HEAD # this means it will always follow the latest version of the Git repository
+    path: /Chart
+  destination:
+    server: https://kubernetes.default.svc # internal kubernetes API service (DNS)
+    namespace: default # added for clarity
+
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+
+    automated:
+      selfHeal: true
+      prune: true

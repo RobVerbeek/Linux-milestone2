@@ -1,0 +1,15 @@
+#
+# Config Map for the postgres database
+# 
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgresql-init
+data:
+  init.sql: |
+    CREATE TABLE user_data (
+        name VARCHAR(100)
+    );
+
+    INSERT INTO user_data (name)
+    VALUES ('Rob Verbeek');

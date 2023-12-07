@@ -1,8 +1,0 @@
-apache:
-  replicas: 1
-  image: robverbeek/apa-m2-rv
-
-
-fastapi:
-  replicas: 3
-  image: robverbeek/fastapi-m2-rv

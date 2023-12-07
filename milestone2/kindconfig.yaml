@@ -1,0 +1,24 @@
+#define what resource is being made, in this case a cluster
+kind: Cluster
+# apiVersion specifices which Kubernetes API is being used.
+apiVersion: kind.x-k8s.io/v1alpha4
+# start defining nodes that are part of the cluster
+nodes:
+  - role: control-plane
+    kubeadmConfigPatches:
+      - |
+        kind: InitConfiguration
+        nodeRegistration:
+          kubeletExtraArgs:
+            node-labels: "ingress-ready=true"
+    # map ports from the containers running inside the cluster to the host machine.
+    extraPortMappings:
+      - containerPort: 80
+        hostPort: 80
+        protocol: TCP
+      - containerPort: 443
+        hostPort: 443
+        protocol: TCP
+  - role: worker
+  - role: worker
+
