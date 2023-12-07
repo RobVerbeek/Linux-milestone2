@@ -30,18 +30,3 @@ spec:
               name: fastapi-service
               port:
                 number: 8000
-        - path: /prometheus
-          pathType: Prefix
-          backend:
-            service:
-              name: prometheus-service
-              port:
-                number: 9090
-        - path: /argo
-          pathType: Prefix
-          backend:
-            service:
-              namespace: argocd
-              name: argocd-server
-              port:
-                number: 8080
