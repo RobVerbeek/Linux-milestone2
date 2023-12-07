@@ -28,7 +28,7 @@ kind: Deployment
 metadata:
   name: fastapi-deployment
 spec:
-  replicas: 2 # in order to scale the backend in this project, 3 replicas of the API are created
+  replicas: 3 # in order to scale the backend in this project, 3 replicas of the API are created
   selector:
     matchLabels:
       app: fastapi
